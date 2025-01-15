@@ -1,33 +1,27 @@
 package org.acme.domain;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import java.util.UUID;
+import jakarta.persistence.IdClass;
 
 @Entity
-public class MyEntity {
+@IdClass(MyEntityPK.class)
+public class MyEntity extends MyBaseEntity {
 
-    @Id
-    private UUID id;
+    private String name;
 
-    public UUID getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void getXXX() {
-    }
-
-    @PrePersist
-    public void setId(){
-        id = UUID.randomUUID();
-    }
-    
-    public String getModelType() {
-        return "MyEntity";
+    @Override
+    public String toString() {
+        return "MyEntity{"
+                + "name=" + name + ","
+                + super.toString()
+                + '}';
     }
 }
