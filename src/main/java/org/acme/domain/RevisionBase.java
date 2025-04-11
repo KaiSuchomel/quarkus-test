@@ -1,5 +1,7 @@
 package org.acme.domain;
 
+import jakarta.persistence.Access;
+import jakarta.persistence.AccessType;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.util.Date;
@@ -8,6 +10,7 @@ import jakarta.persistence.Transient;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @MappedSuperclass
+@Access(AccessType.FIELD)
 public abstract class RevisionBase implements Serializable {
 
     @Schema(description = "User Name of the Revision")
