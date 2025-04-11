@@ -8,6 +8,7 @@ import jakarta.ws.rs.core.MediaType;
 import java.util.UUID;
 import org.acme.control.MyEntityController;
 import org.acme.domain.MyEntity;
+import org.acme.domain.Revision;
 
 @Path("/hello")
 public class GreetingResource {
@@ -28,5 +29,10 @@ public class GreetingResource {
         return controller.create(UUID.randomUUID());
     }
     
-    
+    @Path("revision")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Revision getRevision() {
+        return controller.createRevision(123);
+    }
 }

@@ -18,11 +18,7 @@ class GreetingResourceIT {
                 .statusCode(200)
                 .body(is("Hello from Quarkus REST"));
     }
-    
-    /**
-     * Create Table via DBeaver
-     * create table MyEntity (firstIdField uuid not null, secondIdField uuid not null, description varchar(255), name varchar(255), primary key (firstIdField, secondIdField));
-     */
+
     @Test
     void testEntityEndpoint() {
         given()
@@ -32,6 +28,15 @@ class GreetingResourceIT {
                 .body("name", is("MyTests"))
                 .body("firstIdField", is(notNullValue()))
                 .body("secondIdField", is(notNullValue()));
+    }
+
+    @Test
+    void testRevisionEndpoint() {
+        given()
+                .when().get("/hello/revision")
+                .then()
+                .statusCode(200)
+                .body("id", is(123));
     }
 
 }
