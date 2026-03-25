@@ -5,6 +5,7 @@ import java.util.List;
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
+import io.smallrye.mutiny.Multi;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @RegisterAiService
@@ -12,37 +13,18 @@ import jakarta.enterprise.context.ApplicationScoped;
 public interface AIService {
 
     @SystemMessage("""
-            You are a Highlights service.
-            Return ONLY valid JSON.
-            Do not include markdown.
-            Do not include explanations.
-            Do not include text before or after the JSON.
-            If the output becomes long, you must still continue the JSON array.
-            Never stop in the middle of a JSON object.
-            CRITICAL: The response MUST be a JSON object (not an array) with this exact structure:
-            {
-                "highlights": [
-                    {
-                        "text": "...",
-                        "label": "..."
-                    },
-                    {
-                        "text": "...",
-                        "label": "..."
-                    },
-                    ...
-                ]
-            }
+            Answer the question. 
             """)
     @UserMessage("""
-            Generate a List of Highlevel-Bulletpoints from Text: {text} with maximum Number of Bulletpoints: {numberOfBulletPoints}.
-            Answer in {language}.
-            Answer in JSON.
+            Answer the question: {text}
             """)
-    Highlights getHighlights(String text, String language, Integer numberOfBulletPoints);
+    Multi<String> getStreamedResponse(String text);
 
-
-    public record Highlights(List<Highlight> highlights) {    }
-
-    public record Highlight(String text, String label) {    }
+    @SystemMessage("""
+            Answer the question. 
+            """)
+    @UserMessage("""
+            Answer the question: {text}
+            """)
+    String getResponse(String text);
 }
