@@ -16,8 +16,9 @@
         <quarkus.platform.version>3.32.3</quarkus.platform.version>
         <skipITs>false</skipITs>
         <surefire-plugin.version>3.5.0</surefire-plugin.version>
-        <quarkus.langchain4j.version>1.7.4</quarkus.langchain4j.version>
-        <!-- <quarkus.langchain4j.version>1.8.2</quarkus.langchain4j.version> -->
+        <!-- <quarkus.langchain4j.version>1.7.4</quarkus.langchain4j.version> -->
+        <quarkus.langchain4j.version>1.8.2</quarkus.langchain4j.version>
+        <langchain4j.version>1.12.2</langchain4j.version>
     </properties>
 
     <dependencyManagement>
@@ -46,6 +47,12 @@
             <groupId>io.quarkiverse.langchain4j</groupId>
             <artifactId>quarkus-langchain4j-ai-gemini</artifactId>
             <version>${quarkus.langchain4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-http-client-jdk</artifactId>
+            <version>${langchain4j.version}</version>
         </dependency>
 
         <dependency>

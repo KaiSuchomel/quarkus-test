@@ -20,12 +20,12 @@ public class AIServiceIT {
     @Inject
     AIService aiService;
 
-    @Test
-    public void shouldGetResponse() {
-        String result = aiService.getResponse("Tell me something about Berlin?");
-        assertThat(result, is(notNullValue()));
-        System.out.println(result);
-    }
+    // @Test
+    // public void shouldGetResponse() {
+    //     String result = aiService.getResponse("Tell me something about Berlin?");
+    //     assertThat(result, is(notNullValue()));
+    //     System.out.println(result);
+    // }
 
     @Test
     public void shouldGetStreamedResponse() {

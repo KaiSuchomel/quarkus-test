@@ -1,14 +1,12 @@
 package org.acme.control;
 
-import java.util.List;
-
 import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
 import io.smallrye.mutiny.Multi;
 import jakarta.enterprise.context.ApplicationScoped;
 
-@RegisterAiService
+@RegisterAiService(streamingChatLanguageModelSupplier = GeminiStreamingChatModelSupplier.class)
 @ApplicationScoped
 public interface AIService {
 
